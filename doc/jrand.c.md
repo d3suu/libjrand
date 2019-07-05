@@ -3,59 +3,59 @@
 
 ## Pseudo-constructor Summary
  - `sjrand_s Random()`
-  - Creates a new random number generator structure.
+   - Creates a new random number generator structure.
  - `sjrand_s Random(long seed)`
-  - Creates a new random number generator structure using a single `long` seed.
+   - Creates a new random number generator structure using a single `long` seed.
 
 ## Structure Summary
  - `struct sjrand_s`
-  - `libjrand` basic structure containing:
-   - `long initialSeed`
-    - Value containing initial seed, set by `void setSeed(long seed, sjrand_s* jrandStruct)`, `sjrand_s Random()` and `sjrand_s Random(long seed)`.
-   - `long currentSeed`
-    - Value containing current sequence seed.
-   - `double nextNextGaussian`
-    - Value containing "nextNext" Gaussian. Needed for `nextGaussian()`.
-   - `bool haveNextNextGaussian`
-    - Value containing "nextNext" Gaussian state in structure.
-   - `pthread_mutex_t mutexLock`
-    - Mutex lock, for synchronization between threads.
+   - `libjrand` basic structure containing:
+     - `long initialSeed`
+       - Value containing initial seed, set by `void setSeed(long seed, sjrand_s* jrandStruct)`, `sjrand_s Random()` and `sjrand_s Random(long seed)`.
+     - `long currentSeed`
+       - Value containing current sequence seed.
+     - `double nextNextGaussian`
+       - Value containing "nextNext" Gaussian. Needed for `nextGaussian()`.
+     - `bool haveNextNextGaussian`
+       - Value containing "nextNext" Gaussian state in structure.
+     - `pthread_mutex_t mutexLock`
+       - Mutex lock, for synchronization between threads.
 
 ## Type Summary
  - `sjrand_t`
-  - Defined `sjrand_s` struct.
+   - Defined `sjrand_s` struct.
 
 ## Function Summary
 
 ### Basic functions
-- `int next(int bits, sjrand_s* jrandStruct)`
-  - Generates the next pseudorandom number.
+ - `int next(int bits, sjrand_s* jrandStruct)`
+   - Generates the next pseudorandom number.
  - `bool nextBoolean(sjrand_s* jrandStruct)`
-  - Returns the next pseudorandom, uniformly distributed `bool` value from this random number generator's sequence.
+   - Returns the next pseudorandom, uniformly distributed `bool` value from this random number generator's sequence.
  - `void nextBytes(char* bytes, unsigned int bytesLength, sjrand_s* jrandStruct)`
-  - Generates random bytes and places them into a user-supplied byte array.
+   - Generates random bytes and places them into a user-supplied byte array.
  - `double nextDouble(sjrand_s* jrandStruct)`
-  - Returns the next pseudorandom, uniformly distributed `double` value between `0.0` and `1.0` from this random number generator's sequence.
+   - Returns the next pseudorandom, uniformly distributed `double` value between `0.0` and `1.0` from this random number generator's sequence.
  - `float nextFloat(sjrand_s* jrandStruct)`
-  - Returns the next pseudorandom, uniformly distributed `float` value between `0.0` and `1.0` from this random number generator's sequence.
+   - Returns the next pseudorandom, uniformly distributed `float` value between `0.0` and `1.0` from this random number generator's sequence.
  - `double nextGaussian(sjrand_s* jrandStruct)`
-  - Returns the next pseudorandom, Gaussian ("normally") distributed `double` value with mean `0.0` and standard deviation `1.0` from this random number generator's sequence.
+   - Returns the next pseudorandom, Gaussian ("normally") distributed `double` value with mean `0.0` and standard deviation `1.0` from this random number generator's sequence.
  - `int nextInt(sjrand_s* jrandStruct)`
-  - Returns the next pseudorandom, uniformly distributed `int` value from this random number generator's sequence.
+   - Returns the next pseudorandom, uniformly distributed `int` value from this random number generator's sequence.
  - `int nextInt(int maxInt, sjrand_s* jrandStruct)`
-  - Returns a pseudorandom, uniformly distributed `int` value between `0` (inclusive) and the specified value (exclusive), drawn from this random number generator's sequence.
+   - Returns a pseudorandom, uniformly distributed `int` value between `0` (inclusive) and the specified value (exclusive), drawn from this random number generator's sequence.
  - `long nextLong(sjrand_s* jrandStruct)`
-  - Returns the next pseudorandom, uniformly distributed `long` value from this random number generator's sequence.
+   - Returns the next pseudorandom, uniformly distributed `long` value from this random number generator's sequence.
  - `void setSeed(long seed, sjrand_s* jrandStruct)`
-  - Sets the seed of this random number generator using a single `long` seed.
+   - Sets the seed of this random number generator using a single `long` seed.
 
 ### Custom functions
-- `long getCurrentSeed(sjrand_s* jrandStruct)`
-  - Returns a single `long` seed value from current sequence.
+ - `long getCurrentSeed(sjrand_s* jrandStruct)`
+   - Returns a single `long` seed value from current sequence.
  - `long getInitialSeed(sjrand_s* jrandStruct)`
-  - Returns a single `long` seed value defined by `void setSeed(long seed)`, `sjrand_s Random()` or `sjrand_s Random(long seed)`.
+   - Returns a single `long` seed value defined by `void setSeed(long seed)`, `sjrand_s Random()` or `sjrand_s Random(long seed)`.
  - `bool haveNextNextGaussian(sjrand_s* jrandStruct)`
-  - Returns a single `bool` value from `jsrand_t* jrandStruct` of `bool haveNextNextGaussian`, while locking with mutex.
+   - Returns a single `bool` value from `jsrand_t* jrandStruct` of `bool haveNextNextGaussian`, while locking with mutex.
 
 ## Pseudo-constructor Detail
 
