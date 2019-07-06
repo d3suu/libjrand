@@ -4,22 +4,12 @@
 ## Pseudo-constructor Summary
  - `sjrand_t* Random()`
    - Creates a new random number generator structure.
- - `sjrand_t* Random(long seed)`
+ - `sjrand_t* RandomWithSeed(long seed)`
    - Creates a new random number generator structure using a single `long` seed.
 
 ## Structure Summary
  - `struct sjrand_s`
-   - `libjrand` basic structure containing:
-     - `long initialSeed`
-       - Value containing initial seed, set by `void setSeed(long seed, sjrand_t* jrandStruct)`, `sjrand_t Random()` and `sjrand_t Random(long seed)`.
-     - `long currentSeed`
-       - Value containing current sequence seed.
-     - `double nextNextGaussian`
-       - Value containing "nextNext" Gaussian. Needed for `nextGaussian()`.
-     - `bool haveNextNextGaussian`
-       - Value containing "nextNext" Gaussian state in structure.
-     - `pthread_mutex_t mutexLock`
-       - Mutex lock, for synchronization between threads.
+   - `libjrand` basic structure.
 
 ## Type Summary
  - `sjrand_t`
@@ -53,9 +43,11 @@
  - `long getCurrentSeed(sjrand_t* jrandStruct)`
    - Returns a single `long` seed value from current sequence.
  - `long getInitialSeed(sjrand_t* jrandStruct)`
-   - Returns a single `long` seed value defined by `void setSeed(long seed)`, `sjrand_t Random()` or `sjrand_t Random(long seed)`.
+   - Returns a single `long` seed value defined by `void setSeed(long seed)`, `sjrand_t Random()` or `sjrand_t RandomWithSeed(long seed)`.
  - `bool haveNextNextGaussian(sjrand_t* jrandStruct)`
    - Returns a single `bool` value from `jsrand_t* jrandStruct` of `bool haveNextNextGaussian`, while locking with mutex.
+ - `void randomDestruct(sjrand_t* jrandStruct)`
+   - Destructs jrand structure, free memory.
 
 ## Pseudo-constructor Detail
 
@@ -64,11 +56,11 @@ Creates a new random number generator structure.
  - Seed is based on current Unix time
  - Initializes mutex
 
-#### sjrand_t* Random(long seed)
+#### sjrand_t* RandomWithSeed(long seed)
 Creates a new random number generator structure using a single `long` seed.
  - Initializes mutex
 
-Invocation `Random(seed)` is equivalent to:
+Invocation `RandomWithSeed(seed)` is equivalent to:
 ```C
 sjrand_t* JRandStructure;
 JRandStructure = Random();
@@ -80,7 +72,7 @@ setSeed((long)seed, JRandStructure);
 #### struct sjrand_s
 
 ##### long initialSeed
-Value containing initial seed, set by `void setSeed(long seed, sjrand_t* jrandStruct)`, `sjrand_t* Random()` and `sjrand_t* Random(long seed)`.
+Value containing initial seed, set by `void setSeed(long seed, sjrand_t* jrandStruct)`, `sjrand_t* Random()` and `sjrand_t* RandomWithSeed(long seed)`.
 
 ##### long currentSeed
 Value containing current sequence seed.
