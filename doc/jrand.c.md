@@ -2,9 +2,9 @@
 > Based on [https://docs.oracle.com/javase/7/docs/api/java/util/Random.html](https://docs.oracle.com/javase/7/docs/api/java/util/Random.html)
 
 ## Pseudo-constructor Summary
- - `sjrand_t Random()`
+ - `sjrand_t* Random()`
    - Creates a new random number generator structure.
- - `sjrand_t Random(long seed)`
+ - `sjrand_t* Random(long seed)`
    - Creates a new random number generator structure using a single `long` seed.
 
 ## Structure Summary
@@ -59,20 +59,20 @@
 
 ## Pseudo-constructor Detail
 
-#### sjrand_t Random()
+#### sjrand_t* Random()
 Creates a new random number generator structure. 
  - Seed is based on current Unix time
  - Initializes mutex
 
-#### sjrand_t Random(long seed)
+#### sjrand_t* Random(long seed)
 Creates a new random number generator structure using a single `long` seed.
  - Initializes mutex
 
 Invocation `Random(seed)` is equivalent to:
 ```C
-sjrand_t JRandStructure;
+sjrand_t* JRandStructure;
 JRandStructure = Random();
-setSeed((long)seed, &JRandStructure);
+setSeed((long)seed, JRandStructure);
 ```
 
 ## Structure Detail
@@ -80,7 +80,7 @@ setSeed((long)seed, &JRandStructure);
 #### struct sjrand_s
 
 ##### long initialSeed
-Value containing initial seed, set by `void setSeed(long seed, sjrand_t* jrandStruct)`, `sjrand_t Random()` and `sjrand_t Random(long seed)`.
+Value containing initial seed, set by `void setSeed(long seed, sjrand_t* jrandStruct)`, `sjrand_t* Random()` and `sjrand_t* Random(long seed)`.
 
 ##### long currentSeed
 Value containing current sequence seed.
