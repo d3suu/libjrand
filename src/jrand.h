@@ -14,8 +14,8 @@ struct sjrand_s {
 typedef struct sjrand_s sjrand_t;
 
 // Pseudo-constructors
-sjrand_t Random();
-sjrand_t Random(long seed);
+sjrand_t* Random();
+sjrand_t* RandomWithSeed(long seed);
 
 // Functions
 //// Basic functions
@@ -33,5 +33,6 @@ void setSeed(long seed, sjrand_t* jrandStruct);
 long getCurrentSeed(sjrand_t* jrandStruct);
 long getInitialSeed(sjrand_t* jrandStruct);
 bool haveNextNextGaussian(sjrand_t* jrandStruct);
+void randomDestruct(sjrand_t* jrandStruct);
 
 #endif
